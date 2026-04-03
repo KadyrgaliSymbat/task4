@@ -1,0 +1,132 @@
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main()
+    {
+        // Exercise 1
+        Console.WriteLine("Exercise 1:");
+        int[] numbers = { 3, 7, 2, 9, 5, 1 };
+        int sum = 0;
+
+        foreach (int n in numbers)
+        {
+            sum += n;
+        }
+        Console.WriteLine("Sum = " + sum);
+
+
+        // Exercise 2
+        Console.WriteLine("\nExercise 2:");
+        int[] temps = { 12, -3, 45, 0, 28, -10, 33 };
+
+        int[] sorted = (int[])temps.Clone();
+        Array.Sort(sorted);
+        Console.WriteLine("Using Sort -> Min = " + sorted[0] + ", Max = " + sorted[sorted.Length - 1]);
+
+        int min = temps[0];
+        int max = temps[0];
+
+        foreach (int t in temps)
+        {
+            min = Math.Min(min, t);
+            max = Math.Max(max, t);
+        }
+        Console.WriteLine("Using Loop -> Min = " + min + ", Max = " + max);
+
+
+        // Exercise 3
+        Console.WriteLine("\nExercise 3:");
+        string[] words = { "apple", "banana", "cherry", "date" };
+
+        string[] manual = (string[])words.Clone();
+        for (int i = 0; i < manual.Length / 2; i++)
+        {
+            string temp = manual[i];
+            manual[i] = manual[manual.Length - 1 - i];
+            manual[manual.Length - 1 - i] = temp;
+        }
+
+        Console.Write("Manual: ");
+        foreach (string w in manual)
+        {
+            Console.Write(w + " ");
+        }
+
+        string[] auto = (string[])words.Clone();
+        Array.Reverse(auto);
+
+        Console.Write("\nAuto: ");
+        foreach (string w in auto)
+        {
+            Console.Write(w + " ");
+        }
+
+
+        // Exercise 4
+        Console.WriteLine("\n\nExercise 4:");
+        int[] data = { 4, 7, 2, 11, 6, 9, 14, 3, 8 };
+
+        int even = 0, odd = 0;
+
+        foreach (int d in data)
+        {
+            if (d % 2 == 0) even++;
+            else odd++;
+        }
+
+        Console.WriteLine("Even = " + even + ", Odd = " + odd);
+
+
+        // Exercise 5
+        Console.WriteLine("\nExercise 5:");
+        int[] raw = { 1, 3, 2, 3, 5, 1, 4, 2, 5 };
+
+        List<int> unique = new List<int>();
+
+        foreach (int r in raw)
+        {
+            if (!unique.Contains(r))
+            {
+                unique.Add(r);
+            }
+        }
+
+        foreach (int u in unique)
+        {
+            Console.Write(u + " ");
+        }
+
+
+        // Exercise 6
+        Console.WriteLine("\n\nExercise 6:");
+        int[] arr = { 1, 2, 3, 4, 5, 6, 7 };
+        int k = 3;
+
+        int[] rotated = RotateLeft(arr, k);
+
+        foreach (int x in rotated)
+        {
+            Console.Write(x + " ");
+        }
+    }
+
+
+    static int[] RotateLeft(int[] arr, int k)
+    {
+        int n = arr.Length;
+        int[] result = new int[n];
+
+        k = k % n;
+
+        for (int i = 0; i < n; i++)
+        {
+            result[i] = arr[(i + k) % n];
+        }
+
+        return result;
+    }
+}
+
+
